@@ -1,18 +1,32 @@
-// const a = { name: 'ramesh' };
-// a.name = 'Sindhu';
-// console.log(a);
+let fs = require('fs');
 
-// const arr = [1, 2, 3, 4, 5, 6, 7];
-// console.log(arr.slice(0, 4));
-// const a = arr.splice(1, 2);
-// console.log(arr);
-// console.log(a);
+// console.log('File Read Started');
+// let data = fs.readFileSync('sample.txt');
+// console.log(data);
+// console.log('Program Complete');
 
 
-const arr = [1, 2, 3, 4, 5, 6, 7];
-const res = arr.filter((data) => data != 2);
-console.log(res);
+console.log('File Read Started');
+fs.readFile('sample.txt', function (err, data) {
+    if (null) {
+        console.log('error occured', err);
 
-// const res2 = arr.map((data) => data != 2);
-const res2 = arr.map((data) => data * 2);
-console.log(res2);
+    }
+    else {
+        console.log(data);
+    }
+
+});
+fs.readFile('sample2.txt', function (err, data) {
+    if (null) {
+        console.log('error occured', err);
+
+    }
+    else {
+        console.log(data);
+    }
+
+});
+
+
+console.log('Program Complete');
