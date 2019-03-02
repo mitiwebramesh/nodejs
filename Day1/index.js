@@ -7,14 +7,21 @@ const app = express();
 //     console.log('Executed');
 // });
 
-app.post('/', (req, res) => {
-    return res.send("hey its express");
+app.post('/data', (req, res) => {
+    console.log(req.query);
+    return res.json(req.query);
+
+    // return res.send("hey its express");
+    // console.log(req.query);
     // return res.write("hey its express");
     console.log('Executed');
 });
 
-app.all('/', (req, res) => {
+app.get('/postdata', (req, res) => {
+    // console.log(req.query);
+    console.log(req.body);
     return res.send("hey its express, All");
+    console.log(req.query);
     // return res.write("hey its express, All");
     console.log('Executed');
 });
