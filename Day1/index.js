@@ -1,23 +1,26 @@
-let http = require('http');
-let url = require('url');
-let fs = require('fs');
+const express = require('express');
+const app = express();
 
-http.createServer(function (request, response) {
-    const path = url.parse(request.url).pathname;
-    if (path == '/') {
-        response.write('This is Root');
-        response.end();
-    } else if (path == '/home') {
-        fs.readFile('sample.txt', (err, data) => {
-            response.write(data.toString());
-            response.end();
-        })
-        response.write('This is Home')
-    } else if (path == '/aboutus') {
-        response.write('This is about us');
-        response.end();
-    }
-    console.log('Get Some Request from ', path);
-    // response.write('Hello World');
+// app.get('/', (req, res) => {
+//     return res.send("hey its express");
+//     // return res.write("hey its express");
+//     console.log('Executed');
+// });
 
-}).listen(5000);
+app.post('/', (req, res) => {
+    return res.send("hey its express");
+    // return res.write("hey its express");
+    console.log('Executed');
+});
+
+app.all('/', (req, res) => {
+    return res.send("hey its express, All");
+    // return res.write("hey its express, All");
+    console.log('Executed');
+});
+
+let server = app.listen(5000, () => {
+    console.log('Server has started');
+    console.log('using the server', server.address().address);
+    console.log('using the port', server.address().port);
+});
