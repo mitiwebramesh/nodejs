@@ -1,32 +1,16 @@
-let fs = require('fs');
+let http = require('http');
+let url = require('url');
 
-// console.log('File Read Started');
-// let data = fs.readFileSync('sample.txt');
-// console.log(data);
-// console.log('Program Complete');
-
-
-console.log('File Read Started');
-fs.readFile('sample.txt', function (err, data) {
-    if (null) {
-        console.log('error occured', err);
-
+http.createServer(function (request, response) {
+    const path = url.parse(request.url).pathname;
+    if (path == '/') {
+        response.write('This is Root')
+    } else if (path == '/home') {
+        response.write('This is Home')
+    } else if (path == '/aboutus') {
+        response.write('This is about us');
     }
-    else {
-        console.log(data);
-    }
-
-});
-fs.readFile('sample2.txt', function (err, data) {
-    if (null) {
-        console.log('error occured', err);
-
-    }
-    else {
-        console.log(data);
-    }
-
-});
-
-
-console.log('Program Complete');
+    console.log('Get Some Request from ', path);
+    // response.write('Hello World');
+    response.end();
+}).listen(5000);
